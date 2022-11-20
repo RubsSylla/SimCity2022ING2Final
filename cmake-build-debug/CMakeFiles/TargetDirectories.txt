@@ -1,0 +1,3 @@
+C:/Users/solix/AppData/Local/JetBrains/CLion2022.2/projects/Coord Map + scolling/Tout/cmake-build-debug/CMakeFiles/Tout.dir
+C:/Users/solix/AppData/Local/JetBrains/CLion2022.2/projects/Coord Map + scolling/Tout/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/solix/AppData/Local/JetBrains/CLion2022.2/projects/Coord Map + scolling/Tout/cmake-build-debug/CMakeFiles/rebuild_cache.dir
