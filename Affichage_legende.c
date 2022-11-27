@@ -39,7 +39,7 @@ void affichage_legende_eau(BITMAP* buffer)
     int x_eau_vide = 215;
     int y_eau_vide = 420;
     char message_eau_vide[50] = { 't', 'u', 'y', 'a', 'u', ' ', 'v', 'i', 'd', 'e'};
-    int col_eau_vide = makecol(130,130,130);
+    int col_eau_vide = makecol(255,255,255);
 
     int x_eau_plein = 215;
     int y_eau_plein = 450;

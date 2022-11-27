@@ -65,7 +65,7 @@ t_map Parcours_BFS_distance(coord debut, coord fin, t_map Ville, int ymaison, in
     enfilage(&BFS,start);       /// Enfilage sommet initial
     Visite[start] = 1;     /// Sommet initial marque
 
-    while(x != end
+    while(end != x
     )
     {
         x = defiler(&BFS);/// On défile le sommet de la file
@@ -346,7 +346,7 @@ t_map Recherche_Parcours_Tuyau_Eau_Centrale(t_map Ville)
 void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
 {
     int valeur;
-    int gris = makecol (230,230,230);
+    int gris = makecol (130,130,130);
     int rouge = makecol(255,0,0);
     int verte = makecol(0,255,0);
     int Source = makecol(255,255,0);
@@ -363,10 +363,7 @@ void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
             {
                 valeur = Ville.Eau[i][j].type;
 
-                if(valeur == 6)
-                {
-                    rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,gris);
-                }
+
                 if(valeur == 1)
                 {
                     rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,Eau);
@@ -377,27 +374,27 @@ void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
                     {
                         rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,verte);
 
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, i*20 + 1- screeny, (j+1)*20 + 18- screenx, i*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, i*20 + 1- screeny, (j-1)*20 + 18- screenx, i*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, j*20 + 1 - screenx, (i+1)*20 + 1- screeny, j*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, j*20 + 1 - screenx, (i-1)*20 + 1- screeny, j*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, i*20 + 1- screeny, (j+1)*20 + 18- screenx, i*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, i*20 + 1- screeny, (j-1)*20 + 18- screenx, i*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, j*20 + 1 - screenx, (i+1)*20 + 1- screeny, j*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, j*20 + 1 - screenx, (i-1)*20 + 1- screeny, j*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
                     }
                     else
                     {
                         rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,rouge);
 
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, i*20 + 1- screeny, (j+1)*20 + 18- screenx, i*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, i*20 + 1- screeny, (j-1)*20 + 18- screenx, i*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, j*20 + 1 - screenx, (i+1)*20 + 1- screeny, j*20 + 18- screenx, (i+1)*20 + 18 - screeny,blanc);
-                        rectfill(buffer, j*20 + 1 - screenx, (i-1)*20 + 1- screeny, j*20 + 18- screenx, (i-1)*20 + 18 - screeny,blanc);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, i*20 + 1- screeny, (j+1)*20 + 18- screenx, i*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j+1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j+1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, i*20 + 1- screeny, (j-1)*20 + 18- screenx, i*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i+1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, (j-1)*20 + 1 - screenx, (i-1)*20 + 1- screeny, (j-1)*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, j*20 + 1 - screenx, (i+1)*20 + 1- screeny, j*20 + 18- screenx, (i+1)*20 + 18 - screeny,usine);
+                        rectfill(buffer, j*20 + 1 - screenx, (i-1)*20 + 1- screeny, j*20 + 18- screenx, (i-1)*20 + 18 - screeny,usine);
                     }
                 }
                 if(valeur == 3)
@@ -445,6 +442,10 @@ void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
                 {
                     rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,verte);
                 }
+                if(valeur == 6)
+                {
+                    rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,blanc);
+                }
             }
         }
     }
@@ -452,7 +453,10 @@ void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
 
 void Reseau_Eau(BITMAP *buffer, t_map Ville)
 {
-    Ville = Remplissage_ReseauCanalVide(Ville);
+    if(Ville.hydro_connecte == 1)
+    {
+        Ville = Remplissage_ReseauCanalVide(Ville);
+    }
 
     int actualisation = 0;
     int screenx = 0;

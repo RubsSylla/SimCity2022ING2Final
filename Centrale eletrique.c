@@ -145,11 +145,15 @@ void Reseau_Electrique(BITMAP *buffer, t_map Ville)
 
         textprintf_centre_ex(buffer,font,500,0,makecol(255,255,255),makecol(0,0,0),"3 pour quitter");
 
-        Ville = Recherche_Parcours_Fil_Elec_Centrale(Ville);
+        if(Ville.reseau_connecte == 1)
+        {
+            Ville = Recherche_Parcours_Fil_Elec_Centrale(Ville);
 
-        Ville = Recherche_Jonction_Maison(Ville);
+            Ville = Recherche_Jonction_Maison(Ville);
 
-        Ville = Connexion_Maison_ReseauElec(Ville);
+            Ville = Connexion_Maison_ReseauElec(Ville);
+        }
+
 
         Affichage_FilElec(buffer,Ville,screenx,screeny);
 
@@ -171,6 +175,7 @@ void Affichage_FilElec(BITMAP* buffer, t_map Ville, int screenx, int screeny)
     int verte = makecol(0,255,0);
     int Source = makecol(255,255,0);
     int blanc = makecol(255,255,255);
+    int usine = makecol(0,0,0);
 
 
     for(int i = 0; i<LIGNE; i++)
@@ -216,6 +221,33 @@ void Affichage_FilElec(BITMAP* buffer, t_map Ville, int screenx, int screeny)
                 }
                 if(valeur == 3)
                 {
+                    rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20 + 1- screeny, j*20 + 20 + 18- screenx, i*20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20 + 1- screeny, j*20 - 20 + 18- screenx, i*20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 1- screenx, i*20 + 20 + 1- screeny, j*20 + 18- screenx, i*20 + 20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 1- screenx, i*20 - 20 + 1- screeny, j*20 + 18- screenx, i*20 - 20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20 + 20 + 1- screeny, j*20 - 20 + 18- screenx, i*20 + 18 + 20 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20 + 20 + 1- screeny, j*20 + 20 + 18- screenx, i*20 + 18 + 20 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20 - 20 + 1- screeny, j*20 - 20 + 18- screenx, i*20 + 18 - 20 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20 - 20 + 1- screeny, j*20 + 20 + 18- screenx, i*20 + 18 - 20 - screeny,usine);
+
+                    rectfill(buffer, j*20  + 1 - screenx, i*20+60 + 1- screeny, j*20 + 18- screenx, i*20+60 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20+60 + 1- screeny, j*20 + 20 + 18- screenx, i*20+60 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20+60 + 1- screeny, j*20 - 20 + 18- screenx, i*20+60 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 1- screenx, i*20+60 + 20 + 1- screeny, j*20 + 18- screenx, i*20+60 + 20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 + 1- screenx, i*20+60 - 20 + 1- screeny, j*20 + 18- screenx, i*20+60 - 20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20+60 + 20 + 1- screeny, j*20 - 20 + 18- screenx, i*20+60 + 18 + 20 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20+60 + 20 + 1- screeny, j*20 + 20 + 18- screenx, i*20+60 + 18 + 20 - screeny,usine);
+                    rectfill(buffer, j*20 - 20 + 1- screenx, i*20+60 - 20 + 1- screeny, j*20 - 20 + 18- screenx, i*20+60 + 18 - 20 - screeny,usine);
+                    rectfill(buffer, j*20 + 20 + 1- screenx, i*20+60 - 20 + 1- screeny, j*20 + 20 + 18- screenx, i*20+60 + 18 - 20 - screeny,usine);
+
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 -20 + 1- screeny, j*20 +40 + 18- screenx, i*20 -20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 + 1 - screeny, j*20 +40 + 18 - screenx, i*20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 +20 + 1- screeny, j*20 +40 + 18- screenx, i*20 +20 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 +40 + 1- screeny, j*20 +40 + 18- screenx, i*20 +40 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 +60 + 1- screeny, j*20 +40 + 18- screenx, i*20 +60 + 18 - screeny,usine);
+                    rectfill(buffer, j*20 +40 + 1 - screenx, i*20 +80 + 1- screeny, j*20 +40 + 18- screenx, i*20 +80 + 18 - screeny,usine);
+
                     rectfill(buffer, j*20 + 1- screenx, i*20 + 1- screeny, j*20 + 18- screenx, i*20 + 18 - screeny,Source);
                 }
                 if(valeur == 4)
