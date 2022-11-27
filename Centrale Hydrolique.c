@@ -1,7 +1,3 @@
-//
-// Created by solix on 08/11/2022.
-//
-
 #include "bibli.h"
 
 coord conversion_produit_sommet(int x) /// conversion sommet format matrice -> en coordonnees x | y

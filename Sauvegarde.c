@@ -4,20 +4,20 @@
 
 #include "bibli.h"
 
-t_map Recup_Sauvegarde(t_jeu* J, t_map Ville, t_depenses* P)
+t_map Recup_Sauvegarde(t_jeu* J, t_map Ville, t_depenses* P) /// Recuperation de la sauvegarde
 {
     int compteur = 0;
     int x,y;
 
-    FILE * ifs = fopen("Sauvegarde.txt","r+");
+    FILE * ifs = fopen("Sauvegarde.txt","r+"); // Puverture du fichier de sauvegarde
 
     if(!ifs)
     {
-        printf("Erreur de lecture fichier\n");
+        printf("Erreur de lecture fichier\n"); // Message d'erreur si probleme lors de l'ouverture du  fichier
         exit(-1);
     }
 
-    fscanf(ifs,"%d",&J->sauvegarde);
+    fscanf(ifs,"%d",&J->sauvegarde); // Lire les informations essentielles a la sauvegarde: Mode, nombre d'habitants, connexions chateaux d'eau...)
     fscanf(ifs,"%d",&J->mode);
     fscanf(ifs,"%d",&J->budget);
     fscanf(ifs,"%d",&J->nbtotalHabitantsVille);
@@ -35,9 +35,9 @@ t_map Recup_Sauvegarde(t_jeu* J, t_map Ville, t_depenses* P)
     {
         for(int j=0; j<COLONNE; j++)
         {
-            fscanf(ifs,"%d",&Ville.occupation[i][j]);
+            fscanf(ifs,"%d",&Ville.occupation[i][j]); // Recuperation binaire (0 ou 1 pour etat occupé ou non)
             printf("%d ", Ville.occupation[i][j]);
-            //printf("TurboProut");
+
         }
     }
 

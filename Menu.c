@@ -237,16 +237,16 @@ void lancementPartieSauvegarde(BITMAP* buffer, BITMAP* premierFond, BITMAP* deux
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
-void lancementPartie(BITMAP* buffer) {
+void lancementPartie(BITMAP* buffer) { // Lancement de la partie
     int constanteDeFin = 0, kPause = 0;
 
     BITMAP* deuxiemeFond;
-    deuxiemeFond = load_bitmap("menu2.bmp", NULL);
+    deuxiemeFond = load_bitmap("menu2.bmp", NULL); //chargement du bitmap menu
 
-    BITMAP* capitalisme;
+    BITMAP* capitalisme; // Chargement du bitmap du drapeau capitaliste
     capitalisme= load_bitmap("capitalism.bmp", NULL);
 
-    if(!capitalisme)
+    if(!capitalisme) // SI erreur d'allocation
     {
         allegro_message("pas pu trouver/charger la grille");
         allegro_exit();
@@ -254,9 +254,9 @@ void lancementPartie(BITMAP* buffer) {
     }
 
     BITMAP* communisme;
-    communisme= load_bitmap("communist.bmp", NULL);
+    communisme= load_bitmap("communist.bmp", NULL); // Ouverture bitmap communisme
 
-    if(!communisme)
+    if(!communisme) // Si erreur d'allocation
     {
         allegro_message("pas pu trouver/charger la grille");
         allegro_exit();
@@ -273,7 +273,7 @@ void lancementPartie(BITMAP* buffer) {
         masked_stretch_blit(communisme,buffer,0,0,60,60,600,300,110,110);
 
         rectfill(buffer, 375,415,525,435,violet);
-        textprintf_centre_ex(buffer,font,450,420,vert,-1,"%s","mode : capitaliste");
+        textprintf_centre_ex(buffer,font,450,420,vert,-1,"%s","mode : capitaliste"); // Affichage des information sur le mode  de jeu
         rectfill(buffer, 580,415,730,435,violet);
         textprintf_centre_ex(buffer,font,655,420,vert,-1,"%s","mode : communiste");
 

@@ -1,14 +1,14 @@
 #include "bibli.h"
 
-t_map Incrementation_compt_maison(t_map Ville)
+t_map Incrementation_compt_maison(t_map Ville) // Incrementation du compteur maison
 {
     for(int i=0; i<LIGNE; i++)
     {
-        for(int j=0; j<COLONNE; j++)
+        for(int j=0; j<COLONNE; j++) // Boucle for pour rentrer dans la matrice
         {
-            if(Ville.maisons[i][j].existe == 1)
+            if(Ville.maisons[i][j].existe == 1) // Si la maison existe
             {
-                Ville.maisons[i][j].compteur++;
+                Ville.maisons[i][j].compteur++; // Alors On incremente le compteur
                 //printf("Augmentation compteur maison en %d %d -> %d\n",i,j,Ville.maisons[i][j].compteur);
             }
         }
@@ -17,37 +17,37 @@ t_map Incrementation_compt_maison(t_map Ville)
     return Ville;
 }
 
-t_map Actualisation_Niveau_Maison_capitaliste(t_map Ville, t_jeu *J)
+t_map Actualisation_Niveau_Maison_capitaliste(t_map Ville, t_jeu *J) // Mode capitaliste
 {
     for(int i=0; i<LIGNE; i++)
     {
         for(int j=0; j<COLONNE; j++)
         {
-            if(Ville.maisons[i][j].compteur % 15 == 0 && Ville.maisons[i][j].compteur != 0)
+            if(Ville.maisons[i][j].compteur % 15 == 0 && Ville.maisons[i][j].compteur != 0) // Verification du temps et de l'existence de la maison
             {
-                if(Ville.maisons[i][j].niveau < 5)
+                if(Ville.maisons[i][j].niveau < 5) // Verification du niveau de la maison ( Incrementation si elle n'est pas au niveau maximum)
                 {
                     Ville.maisons[i][j].niveau++;
 
-                    if(Ville.maisons[i][j].niveau == 2)
+                    if(Ville.maisons[i][j].niveau == 2) // Mise ajour des informations du batiment par niveau ( Nombre habitants, Electricité et eau)
                     {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 10;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+10;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 10;
                     }
-                    if(Ville.maisons[i][j].niveau == 3)
+                    if(Ville.maisons[i][j].niveau == 3) // Mise ajour des informations du batiment par niveau ( Nombre habitants, Electricité et eau)
                     {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 40;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+40;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 40;
                     }
-                    if(Ville.maisons[i][j].niveau == 4)
+                    if(Ville.maisons[i][j].niveau == 4) // Mise ajour des informations du batiment par niveau ( Nombre habitants, Electricité et eau)
                     {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 50;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+50;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 50;
                     }
-                    if(Ville.maisons[i][j].niveau == 5)
+                    if(Ville.maisons[i][j].niveau == 5) // Mise ajour des informations du batiment par niveau ( Nombre habitants, Electricité et eau)
                     {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 900;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+900;
@@ -62,7 +62,7 @@ t_map Actualisation_Niveau_Maison_capitaliste(t_map Ville, t_jeu *J)
     return Ville;
 }
 
-t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
+t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J) // Niveau communiste
 {
     for (int i = 0; i < LIGNE; i++) {
         for (int j = 0; j < COLONNE; j++) {
@@ -81,8 +81,10 @@ t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 10;
                         Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 10;
                     }
-                    if(Ville.maisons[i][j].niveau == 3 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
-                    {
+                    if (Ville.maisons[i][j].niveau == 3 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
+                        J->capaciteTotaleCentralesElectriques >
+                        J->nbtotalHabitantsVille) { // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
+                        // Augmentation du nombre d'habitants, d'au et d'electricté
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 40;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 40;
                         Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 40;
@@ -118,13 +120,13 @@ t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
     return Ville;
 }
 
-void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screeny)
+void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screeny) // BITMAPS DES MAISONS
 {
 
     BITMAP* Maison1;
-    Maison1 = load_bitmap("MAISON0.bmp", NULL);
+    Maison1 = load_bitmap("MAISON0.bmp", NULL); // Chargement des bitmaps des maisons
 
-    if(!Maison1)
+    if(!Maison1) // Test sur la validité de l'ouverture du bitmap (erreur d'allocation ?)
     {
         allegro_message("pas pu trouver/charger la maison 1");
         allegro_exit();
@@ -133,6 +135,8 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
 
     BITMAP* Maison2;
     Maison2 = load_bitmap("MAISON1.bmp", NULL);
+    // Chargement des bitmaps des maisons
+    // Test sur la validité de l'ouverture du bitmap (erreur d'allocation ?)
 
     if(!Maison2)
     {
@@ -143,6 +147,8 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
 
     BITMAP* Maison3;
     Maison3 = load_bitmap("MAISON2.bmp", NULL);
+    // Chargement des bitmaps des maisons
+    // Test sur la validité de l'ouverture du bitmap (erreur d'allocation ?)
 
     if(!Maison3)
     {
@@ -153,6 +159,8 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
 
     BITMAP* Maison4;
     Maison4 = load_bitmap("MAISON3.bmp", NULL);
+    // Chargement des bitmaps des maisons
+    // Test sur la validité de l'ouverture du bitmap (erreur d'allocation ?)
 
     if(!Maison4)
     {
@@ -163,6 +171,8 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
 
     BITMAP* Maison5;
     Maison5 = load_bitmap("MAISON4.bmp", NULL);
+// Chargement des bitmaps des maisons
+    // Test sur la validité de l'ouverture du bitmap (erreur d'allocation ?)
 
     if(!Maison5)
     {
@@ -175,27 +185,31 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
     {
         for(int j=0; j<COLONNE; j++)
         {
-            if(Ville.maisons[i][j].existe==1)
+            if(Ville.maisons[i][j].existe==1) // Si la maison existe
             {
                 //textprintf_centre_ex(buffer,font,j*20 + 1 - screenx + 10, i*20 + 1 - screeny + 10,makecol(255,255,255),-1,"%d",Ville.maisons[i][j].niveau);
-                if(Ville.maisons[i][j].niveau == 1)
+                if(Ville.maisons[i][j].niveau == 1) // Affichage du BITMAP de la maison au niveau 1
                 {
                     draw_sprite(buffer, Maison1, (j-1)*20 - screenx, (i-1)*20 - 11 - screeny);
                 }
                 if(Ville.maisons[i][j].niveau == 2)
+                    // Affichage du BITMAP de la maison au niveau 2
                 {
                     draw_sprite(buffer, Maison2, (j-1)*20 - screenx, (i-1)*20 - 22 - screeny);
                 }
                 if(Ville.maisons[i][j].niveau == 3)
+                    // Affichage du BITMAP de la maison au niveau 3
                 {
                     draw_sprite(buffer, Maison3, (j-1)*20 - screenx, (i-1)*20 -11 - screeny);
                 }
                 if(Ville.maisons[i][j].niveau == 4)
+                    // Affichage du BITMAP de la maison au niveau 4
                 {
                     draw_sprite(buffer, Maison4, (j-1)*20 - screenx, (i-1)*20 -11 - screeny);
                 }
                 if(Ville.maisons[i][j].niveau == 5)
                 {
+                    // Affichage du BITMAP de la maison au niveau 5
                     draw_sprite(buffer, Maison5, (j-1)*20 - screenx, (i-1)*20 -47 - screeny);
                 }
             }

@@ -156,7 +156,7 @@ int defiler(t_file*f) /// Fonction de défilage d'une file
 
 void afficherfile(t_file *file)
 {
-    printf("Affichage Etat file : ");
+    printf("Affichage Etat file : "); // Affichage de la file
     if (file == NULL)
     {
         exit(EXIT_FAILURE);

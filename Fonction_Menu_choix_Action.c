@@ -4,28 +4,26 @@
 
 #include "bibli.h"
 
-int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
+int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){ // Fonction d'achat d'un batiment
     int condition = 0;
 
 
     if ( choix == 6){
-        if (jeu->budget > prix.terrainvague)
+        if (jeu->budget > prix.terrainvague) // Verification du budget du maire
         {
-            jeu->budget = jeu->budget - prix.terrainvague;
-            prix.nbterrainvague++;
-            jeu->nbMaison = jeu->nbMaison + 1;
+            jeu->budget = jeu->budget - prix.terrainvague; // Retrait du prix au budget du joueur
+            prix.nbterrainvague++; // Incrementation du prix de la prochaine amelioration
+            jeu->nbMaison = jeu->nbMaison + 1; // Incrementation du nombre de maisons
             condition = 1;
             return condition;
-
-            //printf("Le lieu apres quand on aura fini la map");
         }
         else{
-            printf("Pas assez argent");
+            printf("Pas assez argent"); // Affichage d'erreur si le joueur n'a pas assez d'argent
             condition = 0;
             return condition;
         }
     }
-    else if ( choix == 5){
+    else if ( choix == 5){ // De meme
         if (jeu->budget > prix.centralesElectrique){
             jeu->budget = jeu->budget - prix.centralesElectrique;
             jeu->nbCentrales ++;
@@ -40,7 +38,7 @@ int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
             return condition;
         }
     }
-    else if ( choix == 4){
+    else if ( choix == 4){ // De meme
         if (jeu->budget > prix.chateauEau){
             jeu->budget = jeu->budget - prix.chateauEau;
             jeu->nbChateau_Eau++; /// A VOIR POUR AJOUTEZ LES CAPACITES EN EAUX ET ELECTRIQUE LOCALES ET GLOBALES APRES
@@ -55,7 +53,7 @@ int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
             return condition;
         }
     }
-    else if ( choix == 1){
+    else if ( choix == 1){ // De meme
         if (jeu->budget > prix.route){
             jeu->budget = jeu->budget - prix.route;
             jeu->nbRoutes++;

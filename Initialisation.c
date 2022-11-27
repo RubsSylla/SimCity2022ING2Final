@@ -4,9 +4,9 @@
 
 #include "bibli.h"
 
-void initialisation_StructJeu (t_jeu* jeu)
+void initialisation_StructJeu (t_jeu* jeu) // Initialisation de la structure Jeu: Structure contenant les donnees permettant d'informer l'utilisateur de ses infrastructures et habitants
 {
-    jeu->budget = 250000;
+    jeu->budget = 250000;   // ( Budget, Nombre d'habitants, Nombre de maisons, nombre chateaux chateaux eaux, nombre centrales et capacités)
     jeu->nbtotalHabitantsVille = 0;
     jeu->nbMaison = 0;
     jeu->nbChateau_Eau = 0;
@@ -18,7 +18,7 @@ void initialisation_StructJeu (t_jeu* jeu)
     jeu->mode = 0;
 }
 
-t_depenses initialisation_Depenses (t_depenses prix)
+t_depenses initialisation_Depenses (t_depenses prix) // Initialisation des prix des infrastructures
 {
     prix.caserne = 10000;
     prix.centralesElectrique = 100000;
@@ -198,7 +198,7 @@ t_map Initialisation_Map(t_map Ville) /// Initialisation structure map
     return Ville;
 }
 
-void initialisation_allegro()
+void initialisation_allegro() // Initialisation d'allegro
 {
     printf("Initialisation d'allegro...\n");
     allegro_init(); /// Initialisation d'allegro

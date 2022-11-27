@@ -1,7 +1,3 @@
-//
-// Created by solix on 24/11/2022.
-//
-
 #include "bibli.h"
 
 t_map Acutalisation_Matrice_Route(t_map Ville)
