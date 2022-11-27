@@ -6,16 +6,7 @@
 
 int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
     int condition = 0;
-    /*printf("[ 1 ] Centrale\n");
-    printf("[ 2 ] Chateau d eau\n");
-    printf("[ 3 ] Route\n");
-    printf("[ 4 ] Terrain vague\n");
-    printf("[ 5 ] Caserne\n\n");*/
 
-    /*do{
-        //printf("Selectionner le batiment: ");
-        scanf("%d",&choix);
-    }while (choix > 5 || choix < 1);*/
 
     if ( choix == 6){
         if (jeu->budget > prix.terrainvague)
@@ -78,30 +69,14 @@ int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
             return condition;
         }
     }
-    /*else if ( choix == 3){
-        if (jeu->budget > prix.caserne){
-            jeu->budget = jeu->budget - prix.caserne;
-            jeu->nbCasernes++;
-            condition = 1;
-            return condition;
-            //printf("Le lieu apres quand on aura fini la map");
-        }
-        else{
-            printf("Pas assez argent");
-            condition = 0;
-            return condition;
-        }
-    }*/
+
 }
 
 int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) /// fonction de selection de batiments
 {
 
-    ///Image Outil 144x324
-    /// 324h et 144l
-    /// avec outil x = 0 et outil y = 20
 ///RETOURNE 1 POUR ROUTE, 2 POUR RESEAU D'EAU, 3 POUR RESEAU ELECTRIQUE, 4 POUR CHATEAU D'EAU, 5 POUR CENTRALE, 6 POUR MAISON ET 7 POUR ANNULER
-    *cote = 1;
+    *cote = 1; ///Passage par adresse permettant de choisir le coté gauche ou droite de la barre d'outil
 
     BITMAP* fleche_G; //Taille 265x357
     fleche_G = load_bitmap("fleche_G.bmp", NULL);
@@ -134,7 +109,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
     int route_y = 150;
     int route_tx = 48;
     int route_ty = 70;
-    char message_epe[50] = { 'R', 'o', 'u', 't', 'e'};
+    char message_route[50] = { 'R', 'o', 'u', 't', 'e'};
 
 
     BITMAP* eau;
@@ -182,8 +157,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
     int maison_ty = 70;
     char message_maison[50] = { 'M', 'a', 'i', 's', 'o', 'n'};
 
-    //int retour =0;
-    //clear(buffer);
+    ///Déclaration des variables
 
     masked_stretch_blit(outil, buffer, 0,0,outil_tx, outil_ty, outil_x,outil_y, 250,600);
     textprintf_ex(buffer, font, outil_x+20, outil_y+20, makecol(255,255,255), -1, "Barre d'outil");
@@ -193,44 +167,49 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
     textprintf_ex(buffer, font, outil_x+50, outil_y+490, makecol(255,255,255), -1, "Budjet : %d flouz", j->budget);
     textprintf_ex(buffer, font, outil_x+50, outil_y+510, makecol(255,255,255), -1, "Mode : %d", j->mode);
 
-    // MARGEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+    //Affichage des informations
 
     BITMAP* capitaliste;
     BITMAP* communisme;
 
     capitaliste = load_bitmap("CAPITALISTE.bmp", NULL);
     communisme = load_bitmap("COMMU40X40.bmp",NULL);
+
+    //Déclaration des varaibles : communistes et capitalistes
+
     if (capitaliste == NULL || communisme == NULL) {
         printf("ERREUR OUVERTURE COMMU OU CAPI");
     }
+    //Si aucun des 2 modes erreur
 
     if (j->mode== 1){
 
         draw_sprite(buffer, capitaliste, outil_x + 50, outil_y + 530);
 
     }
+    // Si mode capitaliste
 
     else if (j->mode == 2){
         draw_sprite(buffer, communisme, outil_x + 50, outil_y + 530);
 
     }
 
-    //textprintf_ex(buffer, font, 410, 535, makecol(255,255,255), makecol(0,0,0), "%d/%d", pv, maxPv);
+    //Si mode communiste
 
-    if(mouse_x>=route_x && mouse_x<=route_x + route_tx && mouse_y>=route_y && mouse_y<=route_y + route_ty)
+
+    if(mouse_x>=route_x && mouse_x<=route_x + route_tx && mouse_y>=route_y && mouse_y<=route_y + route_ty)  // si curseur sur souris
     {
         route_tx += 10;
         route_ty += 10;
-        textprintf_ex(buffer, font, route_x, route_y+route_ty, makecol(255,255,255), -1, message_epe);
-
-
+        //On augmente la taille du bouton
+        textprintf_ex(buffer, font, route_x, route_y+route_ty, makecol(255,255,255), -1, message_route);
+        //On affiche les infos du bouton
 
         // Si l'utilisateur clique sur le bouton
         if(mouse_b & 1)
         {
             route_tx = 48;
             route_ty = 70;
-
             // On renvoie un 1 si le bouton est enfoncé
             retour=1;
         }
@@ -239,12 +218,16 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
 
         route_tx = 48;
         route_ty = 70;
+        //Si la souris n'est pas sur le curseur
 
 
 
     }
     masked_stretch_blit(route, buffer, 0, 0, 245,360, route_x, route_y, route_tx, route_ty);
+    //On affiche le bitmap
 
+
+    ///Idem pour les autres boutons
     if(mouse_x>=eau_x && mouse_x<=eau_x + eau_tx && mouse_y>=eau_y && mouse_y<=eau_y + eau_ty)
     {
         eau_tx += 10;
@@ -258,7 +241,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             eau_tx = 48;
             eau_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 2 si le bouton est enfoncé
             retour=2;
         }
     }
@@ -285,7 +268,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             electricite_tx = 48;
             electricite_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 3 si le bouton est enfoncé
             retour=3;
         }
     }
@@ -313,7 +296,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             chateauEau_tx = 48;
             chateauEau_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 4 si le bouton est enfoncé
             retour=4;
         }
     }
@@ -340,7 +323,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             centrale_tx = 48;
             centrale_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 5 si le bouton est enfoncé
             retour=5;
         }
     }
@@ -367,7 +350,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             maison_tx = 48;
             maison_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 6 si le bouton est enfoncé
             retour=6;
         }
     }
@@ -393,7 +376,7 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
             annuler_tx = 50;
             annuler_ty = 57;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 7 si le bouton est enfoncé
             retour=7;
         }
     }
@@ -407,11 +390,14 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
     }
     masked_stretch_blit(annuler, buffer, 0, 0, 354,404, annuler_x, annuler_y, annuler_tx, annuler_ty);
 
+    //Si la souris est sur le bouton pour changer la barre d'outil de coté
     if(mouse_x>=fleche_G_x && mouse_x<=fleche_G_x + fleche_G_tx && mouse_y>=fleche_G_y && mouse_y<=fleche_G_y + fleche_G_ty)
     {
         fleche_G_tx += 5;
         fleche_G_ty += 5;
+        //on augmente la taille su bouton
         textprintf_ex(buffer, font, fleche_G_x, fleche_G_y+fleche_G_ty, makecol(255,255,255), -1, message_fleche_G);
+        //On affiche les information du bouton
 
         // Si l'utilisateur clique sur le bouton
         if(mouse_b & 1)
@@ -421,7 +407,6 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
 
             *cote = 2;   //on vas a droite
 
-            //clear(buffer);
 
         }
     }
@@ -432,16 +417,14 @@ int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) ///
 
     }
     masked_stretch_blit(fleche_G, buffer, 0, 0, 265,357, fleche_G_x, fleche_G_y, fleche_G_tx, fleche_G_ty);
-
+    //On affiche le bouton
 
     return retour;
 }
 
 int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
 
-    ///Image Outil 144x324 -> 250x600
-    /// 324h et 144l
-    /// avec outil x = 0 et outil y = 20
+    ///Idem que pour la barre d'outil gauche
 ///RETOURNE 1 POUR ROUTE, 2 POUR RESEAU D'EAU, 3 POUR RESEAU ELECTRIQUE, 4 POUR CHATEAU D'EAU, 5 POUR CENTRALE, 6 POUR MAISON ET 7 POUR ANNULER
     *cote = 2;
 
@@ -594,7 +577,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             eau_tx = 48;
             eau_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 2 si le bouton est enfoncé
             retour=2;
         }
     }
@@ -621,7 +604,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             electricite_tx = 48;
             electricite_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 3 si le bouton est enfoncé
             retour=3;
         }
     }
@@ -649,7 +632,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             chateauEau_tx = 48;
             chateauEau_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 4 si le bouton est enfoncé
             retour=4;
         }
     }
@@ -676,7 +659,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             centrale_tx = 48;
             centrale_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 5 si le bouton est enfoncé
             retour=5;
         }
     }
@@ -703,7 +686,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             maison_tx = 48;
             maison_ty = 70;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 6 si le bouton est enfoncé
             retour=6;
         }
     }
@@ -729,7 +712,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
             annuler_tx = 50;
             annuler_ty = 57;
 
-            // On renvoie un 1 si le bouton est enfoncé
+            // On renvoie un 7 si le bouton est enfoncé
             retour=7;
         }
     }
@@ -757,7 +740,7 @@ int retourBarreOutil_Droite(BITMAP* buffer, t_jeu* j, int retour, int* cote){
 
             *cote = 1;  // on vas a gauche
 
-            //clear(buffer);
+
 
         }
     }

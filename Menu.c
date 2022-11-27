@@ -308,7 +308,7 @@ void pause(BITMAP* buffer) /// fonction de la pause
 {
     int kPause=0;
     BITMAP *pause;
-    pause = load_bitmap("pause.bmp", NULL);
+    pause = load_bitmap("pause.bmp", NULL);  //chargement du bitmap pause
     if(key[KEY_O])
     {
         kPause=1;

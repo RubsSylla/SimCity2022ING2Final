@@ -75,42 +75,40 @@ t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
                     // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
                     Ville.maisons[i][j].niveau++;
 
-                    if(Ville.maisons[i][j].niveau == 2 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
-                    {
+                    if (Ville.maisons[i][j].niveau == 2 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
+                        J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 10;
-                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+10;
-                        Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 10;
+                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 10;
+                        Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 10;
                     }
                     if(Ville.maisons[i][j].niveau == 3 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
                     {
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 40;
-                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+40;
-                        Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 40;
+                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 40;
+                        Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 40;
                     }
                     if (Ville.maisons[i][j].niveau == 4 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
                         J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
                         // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
                         // Augmentation du nombre d'habitants, d'au et d'electricté
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 50;
-                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+50;
-                        Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 50;
+                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 50;
+                        Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 50;
                     }
                     if (Ville.maisons[i][j].niveau == 5 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
                         J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
                         // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
                         // Augmentation du nombre d'habitants, d'au et d'electricté
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 900;
-                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+900;
-                        Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 900;
+                        Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite + 900;
+                        Ville.maisons[i][j].eau = Ville.maisons[i][j].eau + 900;
                     }
-                }
-                else if(Ville.maisons[i][j].niveau >= 2 && J->capaciteTotaleChateauEau < J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques < J->nbtotalHabitantsVille)
-                {
+                } else if (Ville.maisons[i][j].niveau >= 2 && J->capaciteTotaleChateauEau < J->nbtotalHabitantsVille &&
+                           J->capaciteTotaleCentralesElectriques < J->nbtotalHabitantsVille) {
                     Ville.maisons[i][j].niveau--;
                 }
                 else
                 {
-                    //allegro_message("ELLE A EST AU NIVEAU LE PLUS BAS OU ELLE STAGNE");
                 }
             }
 
@@ -208,11 +206,11 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
 
 void impots(t_jeu* J, t_map Ville, int compteur) ///Fonction impots
 {
-    if(compteur % 15 == 0)
+    if(compteur % 15 == 0)   //toutes les 15 secondes
     {
-        if(Ville.reseau_connecte == 1)
+        if(Ville.reseau_connecte == 1) //si maison connéctée
         {
-            J->budget = J->budget + J->nbtotalHabitantsVille*10;
+            J->budget = J->budget + J->nbtotalHabitantsVille*10; //On incrémente le budjet de la ville
         }
 
     }

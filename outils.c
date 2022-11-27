@@ -161,6 +161,8 @@ void afficherfile(t_file *file)
     {
         exit(EXIT_FAILURE);
     }
+    //Si la file est vide
+
     t_maillon *actuel = file->debut;
 
     while (actuel != NULL)
