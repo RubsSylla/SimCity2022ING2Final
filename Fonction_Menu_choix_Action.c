@@ -94,7 +94,8 @@ int acheterBatiment (t_depenses prix, t_jeu *jeu, int choix){
     }*/
 }
 
-int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote){
+int retourBarreOutil_Gauche(BITMAP* buffer, t_jeu* j, int retour, int* cote) /// fonction de selection de batiments
+{
 
     ///Image Outil 144x324
     /// 324h et 144l

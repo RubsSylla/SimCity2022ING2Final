@@ -4,7 +4,7 @@
 
 #include "bibli.h"
 
-coord conversion_produit_sommet(int x)
+coord conversion_produit_sommet(int x) /// conversion sommet format matrice -> en coordonnees x | y
 {
     coord renvoi;
 
@@ -22,14 +22,10 @@ coord conversion_produit_sommet(int x)
     renvoi.x = valeur+1;
     renvoi.y = i;
 
-    //printf("x = %d\n", renvoi.x);
-    //printf("y = %d\n", renvoi.y);
-
-
     return renvoi;
 }
 
-t_map Parcours_BFS_distance(coord debut, coord fin, t_map Ville, int ymaison, int xmaison)
+t_map Parcours_BFS_distance(coord debut, coord fin, t_map Ville, int ymaison, int xmaison) /// BFS du parcours
 {
     int start,end;
     int x;
@@ -74,12 +70,12 @@ t_map Parcours_BFS_distance(coord debut, coord fin, t_map Ville, int ymaison, in
         {
             if(Ville.Route.Adjacence[x][i] == 1 && Visite[i] == 0)                   /// Si le sommet i n'est pas visité et que la différence est supérieur à 0 alors
             {
-                printf("%d est adjacent a %d et %d n'est pas decouvert\n", i,x,i);
+                //printf("%d est adjacent a %d et %d n'est pas decouvert\n", i,x,i);
                 enfilage(&BFS,i);                      /// Enfilage du sommet dans la file
                 Ville.Route.Prede[i] = x;                            /// Actualisation du tableau de predecesseur
 
 
-                afficherfile(&BFS);
+                //afficherfile(&BFS);
 
             }
         }
@@ -112,7 +108,7 @@ t_map Parcours_BFS_distance(coord debut, coord fin, t_map Ville, int ymaison, in
 
 }
 
-t_map Distance_Maison_CentraleEau(t_map Ville)
+t_map Distance_Maison_CentraleEau(t_map Ville) /// Calcul dista tuyaux
 {
     Ville = Acutalisation_Matrice_Route(Ville);
 
@@ -156,7 +152,7 @@ t_map Distance_Maison_CentraleEau(t_map Ville)
     return Ville;
 }
 
-t_map Remplissage_ReseauCanalVide(t_map Ville)
+t_map Remplissage_ReseauCanalVide(t_map Ville) /// remplissage des tuyaux vide sur la map
 {
     for(int i=0; i<LIGNE; i++)
     {
@@ -341,7 +337,7 @@ t_map Recherche_Parcours_Tuyau_Eau_Centrale(t_map Ville)
 
     return Ville;
 
-}
+} /// recherche des tuyaux dans la centrale
 
 void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
 {
@@ -449,7 +445,7 @@ void Affichage_Tuyaux(BITMAP* buffer, t_map Ville, int screenx, int screeny)
             }
         }
     }
-}
+} /// affichage des Tuyaux sur la map
 
 void Reseau_Eau(BITMAP *buffer, t_map Ville)
 {
@@ -538,7 +534,7 @@ void Reseau_Eau(BITMAP *buffer, t_map Ville)
     }
 
 
-}
+} /// Fonction d'affichage de tous le reseau d'eau
 
 t_map test_connexion_Routiere_Eau(t_map Ville)
 {
@@ -569,4 +565,4 @@ t_map test_connexion_Routiere_Eau(t_map Ville)
     }
 
     return Ville;
-}
+} /// Connextion de la centrale a la route

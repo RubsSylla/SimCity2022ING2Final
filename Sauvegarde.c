@@ -128,7 +128,7 @@ t_map Recup_Sauvegarde(t_jeu* J, t_map Ville, t_depenses* P)
 
 }
 
-void Sauvegarde_Text(t_jeu* J, t_map Ville, t_depenses P)
+void Sauvegarde_Text(t_jeu* J, t_map Ville, t_depenses P) /// Ecriture de la sauvegarde
 {
     FILE * ifs = fopen("Sauvegarde.txt","w");
 

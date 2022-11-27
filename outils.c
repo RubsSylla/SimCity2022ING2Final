@@ -24,7 +24,7 @@ int renvoi_XC(int XC, int mouseX)
     }
 
     return XC;
-}
+} /// Fonction utile pour le scrolling : coord x de la souris
 
 int renvoi_YC(int YC, int mouseY)
 {
@@ -47,7 +47,7 @@ int renvoi_YC(int YC, int mouseY)
     }
 
     return YC;
-}
+} /// Fonction utile pour le scrolling : coord y de la souris
 
 coord test(int coordX, int coordY) {
     int ligne = 0;
@@ -88,7 +88,7 @@ coord test(int coordX, int coordY) {
 
     return renvoi;
 
-}
+} /// Fonction de bordure pour le scrolling
 
 void scroll(int playX, int playY, int *cameraX, int *cameraY)
 {
@@ -103,7 +103,7 @@ void scroll(int playX, int playY, int *cameraX, int *cameraY)
     {
         *cameraY = 0;
     }
-}
+} /// Fonction de scrolling
 
 void enfilage(t_file*f, int numero) /// Fonction d'enfilage d'un entier dans la file
 {
@@ -169,4 +169,4 @@ void afficherfile(t_file *file)
     }
 
     printf("\n");
-}
+} /// Fonction d'affichage d'une file

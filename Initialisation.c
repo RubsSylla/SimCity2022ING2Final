@@ -65,7 +65,7 @@ t_MatriceRoute Initialisation_Matrice_route(t_map Ville)
 
 }
 
-t_map Initialisation_Map(t_map Ville)
+t_map Initialisation_Map(t_map Ville) /// Initialisation structure map
 {
     Ville.reseau_connecte = 0;
 

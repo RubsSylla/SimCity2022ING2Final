@@ -1,6 +1,6 @@
 #include "bibli.h"
 
-void affichage_legende_eau(BITMAP* buffer)
+void affichage_legende_eau(BITMAP* buffer) /// Affichage légende mode eau
 {
 
 
@@ -66,7 +66,7 @@ void affichage_legende_eau(BITMAP* buffer)
 
 }
 
-void affichage_legende_elec(BITMAP* buffer)
+void affichage_legende_elec(BITMAP* buffer) /// Affichage légende mode electrocoté
 {
 
 

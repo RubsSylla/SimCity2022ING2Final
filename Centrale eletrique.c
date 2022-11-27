@@ -4,9 +4,9 @@
 
 #include "bibli.h"
 
-t_map test_capacite_Production_elec(t_jeu *j,t_map Ville)
+t_map test_capacite_Production_elec(t_jeu *j,t_map Ville) /// test de surcharge production et consommation électricité
 {
-    if(j->capaciteTotaleCentralesElectriques >= j->nbtotalHabitantsVille)
+    if(j->capaciteTotaleCentralesElectriques >= j->nbtotalHabitantsVille) /// Si le réseau n'est pas saturé
     {
         Ville.reseau_connecte = 1;
 
@@ -25,7 +25,7 @@ t_map test_capacite_Production_elec(t_jeu *j,t_map Ville)
             }
         }
     }
-    if(j->capaciteTotaleCentralesElectriques < j->nbtotalHabitantsVille)
+    if(j->capaciteTotaleCentralesElectriques < j->nbtotalHabitantsVille) /// Si le réseau est saturé
     {
         for(int i=0; i<LIGNE; i++)
         {
@@ -40,7 +40,8 @@ t_map test_capacite_Production_elec(t_jeu *j,t_map Ville)
     return Ville;
 }
 
-t_map test_connexion_Routiere_Elec(t_map Ville)
+t_map test_connexion_Routiere_Elec(t_map Ville) /// Condition de connexion à la route
+
 {
     for(int i=0; i<LIGNE; i++)
     {
@@ -58,9 +59,9 @@ t_map test_connexion_Routiere_Elec(t_map Ville)
                     || Ville.type[i+5][j-1] == 1 || Ville.type[i+5][j] == 1 || Ville.type[i+5][j+1] || Ville.type[i+5][j+2] == 1)
                 {
 
-                    Ville.industrielle[i][j].relie = 1;
-                    Ville.reseau_connecte = 1;
-                    Ville = Remplissage_ReseauElec(Ville);
+                    Ville.industrielle[i][j].relie = 1; /// la centrale est relié
+                    Ville.reseau_connecte = 1; /// le réseau est connecté a la route
+                    Ville = Remplissage_ReseauElec(Ville); /// remplissage des fils sur la map
 
                 }
             }
@@ -71,7 +72,7 @@ t_map test_connexion_Routiere_Elec(t_map Ville)
     return Ville;
 }
 
-t_map Remplissage_ReseauElec(t_map Ville)
+t_map Remplissage_ReseauElec(t_map Ville) /// allocation des fils élec sur la matrice de la map
 {
     for(int i=0; i<LIGNE; i++)
     {
@@ -88,7 +89,7 @@ t_map Remplissage_ReseauElec(t_map Ville)
     return Ville;
 }
 
-void Reseau_Electrique(BITMAP *buffer, t_map Ville)
+void Reseau_Electrique(BITMAP *buffer, t_map Ville) /// affichage du réseau électrique
 {
     int screenx = 0;
     int screeny = 0;
@@ -113,11 +114,11 @@ void Reseau_Electrique(BITMAP *buffer, t_map Ville)
         exit(EXIT_FAILURE);
     }
 
-    while(!key[KEY_3])
+    while(!key[KEY_3]) /// Boucle infini tant que 3 n'est pas pressé
     {
         clear(buffer);
 
-        scroll(xC,yC,&screenx,&screeny);
+        scroll(xC,yC,&screenx,&screeny); /// fonction scrolling
 
         mouseXmonde = mouse_x + screenx;
         mouseYmonde = mouse_y + screeny;
@@ -127,7 +128,7 @@ void Reseau_Electrique(BITMAP *buffer, t_map Ville)
 
         blit(fond,buffer,screenx,screeny,0,0,SCREEN_W,SCREEN_H);
 
-        if (key[KEY_G])
+        if (key[KEY_G]) /// choix affichage de la grille
         {
             if (grilleA == 0)
             {
@@ -145,21 +146,17 @@ void Reseau_Electrique(BITMAP *buffer, t_map Ville)
 
         textprintf_centre_ex(buffer,font,500,0,makecol(255,255,255),makecol(0,0,0),"3 pour quitter");
 
-        if(Ville.reseau_connecte == 1)
-        {
-            Ville = Recherche_Parcours_Fil_Elec_Centrale(Ville);
+        Ville = Recherche_Parcours_Fil_Elec_Centrale(Ville); /// recherche connexion routière Centrale
 
-            Ville = Recherche_Jonction_Maison(Ville);
+        Ville = Recherche_Jonction_Maison(Ville); /// recherche connexion routière maison
 
-            Ville = Connexion_Maison_ReseauElec(Ville);
-        }
+        Ville = Connexion_Maison_ReseauElec(Ville); /// Maison connecté au reseau elec
 
+        Affichage_FilElec(buffer,Ville,screenx,screeny); /// affichage complet
 
-        Affichage_FilElec(buffer,Ville,screenx,screeny);
+        affichage_legende_elec(buffer); /// affichage de la légende
 
-        affichage_legende_elec(buffer);
-
-        show_mouse(buffer);
+        show_mouse(buffer); /// affichage de la souris
 
         blit(buffer,screen,0,0,0,0,SCREEN_W,SCREEN_H);
     }
@@ -167,7 +164,7 @@ void Reseau_Electrique(BITMAP *buffer, t_map Ville)
 
 }
 
-void Affichage_FilElec(BITMAP* buffer, t_map Ville, int screenx, int screeny)
+void Affichage_FilElec(BITMAP* buffer, t_map Ville, int screenx, int screeny) /// affichage complet des structures
 {
     int valeur;
     int orange = makecol(255,140,0);
@@ -267,7 +264,7 @@ void Affichage_FilElec(BITMAP* buffer, t_map Ville, int screenx, int screeny)
     }
 }
 
-t_map Connexion_Maison_ReseauElec(t_map Ville)
+t_map Connexion_Maison_ReseauElec(t_map Ville) /// test connextion Maison au réseau electrique
 {
     for(int i=0; i<LIGNE; i++)
     {
@@ -287,7 +284,7 @@ t_map Connexion_Maison_ReseauElec(t_map Ville)
     return Ville;
 }
 
-t_map Recherche_Parcours_Fil_Elec_Centrale(t_map Ville)
+t_map Recherche_Parcours_Fil_Elec_Centrale(t_map Ville) /// recherche parcours fil à la route depuis la source
 {
     int coordxSource;
     int coordySource;
@@ -457,7 +454,7 @@ t_map Recherche_Parcours_Fil_Elec_Centrale(t_map Ville)
 
 }
 
-t_map Remplissage_Maison(t_map Ville)
+t_map Remplissage_Maison(t_map Ville) /// alimentation des maisons en eletricité et en eau
 {
     for(int i=0; i<LIGNE; i++)
     {
