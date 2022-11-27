@@ -4,7 +4,7 @@
 
 #include "bibli.h"
 
-void Affichage_Industrielle(BITMAP* buffer,t_map Ville, int screenx, int screeny)
+void Affichage_Industrielle(BITMAP* buffer,t_map Ville, int screenx, int screeny)/// affichage des bitmaps des batiments industriels
 {
     BITMAP* Eau;
     Eau = load_bitmap("EauVrai.bmp", NULL);

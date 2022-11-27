@@ -4,7 +4,7 @@
 
 #include "bibli.h"
 
-int myClock(int diffAfterReset) // Le moment du dernier reset)
+int myClock(int diffAfterReset) /// Le moment du dernier reset
 {
     return clock() - diffAfterReset; // Retourne le temps depuis le dernier reset
 }
@@ -15,7 +15,7 @@ int ResetClock(int diffAfterReset) // Le moment du dernier reset)
     return diffAfterReset;
 }
 
-int Signal(int t1, int *memoire)
+int Signal(int t1, int *memoire) /// envoi du signal lorsque le compteur est modulo 15
 {
     int valeur;
     int oui;

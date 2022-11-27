@@ -26,7 +26,7 @@ int renvoi_XC(int XC, int mouseX)
     return XC;
 } /// Fonction utile pour le scrolling : coord x de la souris
 
-int renvoi_YC(int YC, int mouseY)
+int renvoi_YC(int YC, int mouseY) ///renvoi de y pour le scrolling
 {
     if (mouseY <= 20)
     {
@@ -49,7 +49,8 @@ int renvoi_YC(int YC, int mouseY)
     return YC;
 } /// Fonction utile pour le scrolling : coord y de la souris
 
-coord test(int coordX, int coordY) {
+coord test(int coordX, int coordY) ///
+{
     int ligne = 0;
     int colonne = 0;
     int i;

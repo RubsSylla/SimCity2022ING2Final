@@ -21,7 +21,7 @@ void Choix_Affichage(int constru, BITMAP* buffer, coord souris, int screenx, int
     {
         Affichage_TerrainVague(buffer,souris,screenx,screeny);
     }
-}
+} /// choix d'Affichage des structures de la map
 
 t_map test_connexion_Routiere_Maison(t_map Ville)
 {
@@ -48,7 +48,7 @@ t_map test_connexion_Routiere_Maison(t_map Ville)
         }
     }
     return Ville;
-}
+} /// test de connexion a la route de la maison
 
 t_map test_connexion_Routiere_Utilitaire(t_map Ville)
 {
@@ -77,7 +77,7 @@ t_map test_connexion_Routiere_Utilitaire(t_map Ville)
     }
 
     return Ville;
-}
+} /// test de connexion a la route d'une centrale
 
 void Actualisation_map(BITMAP* buffer, t_map Ville, int screenx, int screeny) /// Affichage sur buffer des éléments nouveau
 {
@@ -401,13 +401,13 @@ t_map achat(int constru,coord souris,t_map Ville, t_depenses prix, t_jeu* jeu)
     }
 
     return Ville;
-}
+} /// fonction d'achat
 
 void Affichage_Route(BITMAP* buffer, coord souris, int screenx, int screeny)
 {
     int route = makecol(0,0,0);
     rectfill(buffer, souris.x + 1- screenx, souris.y + 1- screeny, souris.x + 18- screenx, souris.y + 18 - screeny,route);
-}
+} /// fonction d'affichage de la route
 
 void Affichage_TerrainVague(BITMAP* buffer, coord souris, int screenx, int screeny)
 {
@@ -421,9 +421,9 @@ void Affichage_TerrainVague(BITMAP* buffer, coord souris, int screenx, int scree
     rectfill(buffer, souris.x + 20 + 1- screenx, souris.y + 20 + 1- screeny, souris.x + 20 + 18- screenx, souris.y + 18 + 20 - screeny,t_v);
     rectfill(buffer, souris.x - 20 + 1- screenx, souris.y - 20 + 1- screeny, souris.x - 20 + 18- screenx, souris.y + 18 - 20 - screeny,t_v);
     rectfill(buffer, souris.x + 20 + 1- screenx, souris.y - 20 + 1- screeny, souris.x + 20 + 18- screenx, souris.y + 18 - 20 - screeny,t_v);
-}
+} /// fonction d'affichage des maisons
 
-void Affichage_Centale_Eau(BITMAP* buffer, coord souris, int screenx, int screeny)
+void Affichage_Centale_Eau(BITMAP* buffer, coord souris, int screenx, int screeny) /// fonction affichage centrale eau
 {
     int usine = makecol(0,0,255);
 
@@ -456,7 +456,7 @@ void Affichage_Centale_Eau(BITMAP* buffer, coord souris, int screenx, int screen
 
 }
 
-void Affichage_Centrale_Nucleaire(BITMAP* buffer, coord souris, int screenx, int screeny)
+void Affichage_Centrale_Nucleaire(BITMAP* buffer, coord souris, int screenx, int screeny) /// fonction affichage centrale elec
 {
     int usine = makecol(255,230,0);
 

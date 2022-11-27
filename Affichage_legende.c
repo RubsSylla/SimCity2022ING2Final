@@ -66,7 +66,7 @@ void affichage_legende_eau(BITMAP* buffer) /// Affichage légende mode eau
 
 }
 
-void affichage_legende_elec(BITMAP* buffer) /// Affichage légende mode electrocoté
+void affichage_legende_elec(BITMAP* buffer) /// Affichage légende mode electricité
 {
 
 
@@ -122,3 +122,4 @@ void affichage_legende_elec(BITMAP* buffer) /// Affichage légende mode electroc
     rectfill(buffer,x_fil,y_fil,x_fil+20,y_fil+20,col_fil);
     textprintf_ex(buffer, font, x_fil+30, y_fil+7, makecol(255,255,255), -1, message_fil);
 }
+

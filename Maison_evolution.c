@@ -64,16 +64,15 @@ t_map Actualisation_Niveau_Maison_capitaliste(t_map Ville, t_jeu *J)
 
 t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
 {
-    for(int i=0; i<LIGNE; i++)
-    {
-        for(int j=0; j<COLONNE; j++)
-        {
-            if(Ville.maisons[i][j].compteur % 15 == 0 && Ville.maisons[i][j].compteur != 0)
+    for (int i = 0; i < LIGNE; i++) {
+        for (int j = 0; j < COLONNE; j++) {
+            if (Ville.maisons[i][j].compteur % 15 == 0 &&
+                Ville.maisons[i][j].compteur != 0)  // Verification du temps ( 15 secondes)
             {
 
-                if(Ville.maisons[i][j].niveau < 5 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
-                {
-                    //allegro_message("test 2");
+                if (Ville.maisons[i][j].niveau < 5 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
+                    J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
+                    // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
                     Ville.maisons[i][j].niveau++;
 
                     if(Ville.maisons[i][j].niveau == 2 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
@@ -88,14 +87,18 @@ t_map Actualisation_Niveau_Maison_communiste(t_map Ville, t_jeu *J)
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+40;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 40;
                     }
-                    if(Ville.maisons[i][j].niveau == 4 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
-                    {
+                    if (Ville.maisons[i][j].niveau == 4 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
+                        J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
+                        // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
+                        // Augmentation du nombre d'habitants, d'au et d'electricté
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 50;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+50;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 50;
                     }
-                    if(Ville.maisons[i][j].niveau == 5 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille && J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille)
-                    {
+                    if (Ville.maisons[i][j].niveau == 5 && J->capaciteTotaleChateauEau > J->nbtotalHabitantsVille &&
+                        J->capaciteTotaleCentralesElectriques > J->nbtotalHabitantsVille) {
+                        // Verification de la capacité des chateau d'eau et electricté: Est elle superieure en quantité par rapport aux nombre d'habitants dans le batiment?
+                        // Augmentation du nombre d'habitants, d'au et d'electricté
                         J->nbtotalHabitantsVille = J->nbtotalHabitantsVille + 900;
                         Ville.maisons[i][j].electricite = Ville.maisons[i][j].electricite+900;
                         Ville.maisons[i][j].eau =  Ville.maisons[i][j].eau + 900;
@@ -203,7 +206,7 @@ void Affichage_Niveau_Maison(BITMAP* buffer,t_map Ville, int screenx, int screen
     }
 }
 
-void impots(t_jeu* J, t_map Ville, int compteur)
+void impots(t_jeu* J, t_map Ville, int compteur) ///Fonction impots
 {
     if(compteur % 15 == 0)
     {
@@ -215,7 +218,7 @@ void impots(t_jeu* J, t_map Ville, int compteur)
     }
 }
 
-t_map Recherche_Jonction_Maison(t_map Ville)
+t_map Recherche_Jonction_Maison(t_map Ville) /// Recherche De la jonction de la maison
 {
     int coordxSource;
     int coordySource;

@@ -63,7 +63,7 @@ t_MatriceRoute Initialisation_Matrice_route(t_map Ville)
 
     return Reseau;
 
-}
+} /// initialisation de la matrice Route
 
 t_map Initialisation_Map(t_map Ville) /// Initialisation structure map
 {

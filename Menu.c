@@ -86,7 +86,7 @@ void menu(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond)
         blit(buffer,screen,0,0,0,0,1024,678);
 
     }while(!key[KEY_ESC]);
-}
+} /// Lancement du menu
 
 
 void affichageDeBase(BITMAP* buffer)
@@ -100,12 +100,12 @@ void affichageDeBase(BITMAP* buffer)
     textprintf_centre_ex(buffer, font, 750,425,violet,-1,"%s", "REGLES");
     rectfill(buffer,600,500,900,550,vert);
     textprintf_centre_ex(buffer, font, 750,525,violet,-1,"%s", "CONCEPTION");
-}
+} /// fonction affichage par défaut
 
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-void reglesMenu(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond)
+void reglesMenu(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond) /// fonction d'affichage des règles dans le menu
 {
     int constanteDeFin=0;
 
@@ -186,10 +186,10 @@ void conceptionMenu(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond)
         }
         blit(buffer, screen, 0, 0, 0, 0, 1024, 678);
     }while(constanteDeFin!=1);
-}
+} /// Fonction de l'option du menu conception
 
 /*////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-void lancementPartieSauvegarde(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond)
+void lancementPartieSauvegarde(BITMAP* buffer, BITMAP* premierFond, BITMAP* deuxiemeFond) /// fonction du lancement de la partie sauvegarde
 {
     int existancePartieSauvegardee=-1, constanteDeFin=0;
 
@@ -234,12 +234,6 @@ void lancementPartieSauvegarde(BITMAP* buffer, BITMAP* premierFond, BITMAP* deux
 }
 
 /*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void pause()
-{
-    allegro_message("mode PAUSE active !\nCliquez sur ENTER pour revenir au jeu.");
-    getchar();
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
 
@@ -310,7 +304,7 @@ void lancementPartie(BITMAP* buffer) {
    } //NE SERA JAMAIS EGAL A DEUX CAR LA PARTIE CONTINUE MEME APRES LA PAUSE*/
 }
 
-void pause(BITMAP* buffer)
+void pause(BITMAP* buffer) /// fonction de la pause
 {
     int kPause=0;
     BITMAP *pause;
@@ -335,7 +329,7 @@ void pause(BITMAP* buffer)
     }
 }
 
-void fonctionPause(int kPause, BITMAP* buffer,t_jeu* J, t_map Ville, t_depenses P, int* fin)
+void fonctionPause(int kPause, BITMAP* buffer,t_jeu* J, t_map Ville, t_depenses P, int* fin) /// fonction de pause
 {
 
     BITMAP *pause;
